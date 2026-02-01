@@ -5,6 +5,7 @@ import { InputTextModule } from 'primeng/inputtext';
 @Component({
     selector: "app-auth",
     templateUrl: "./auth.component.html",
+    standalone: true,
     imports: [InputTextModule, ReactiveFormsModule],
 })
 export class AuthComponent {
