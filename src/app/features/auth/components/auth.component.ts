@@ -19,7 +19,7 @@ export class AuthComponent {
     login() {
         if (this.loginForm.valid) {
             const { email, password } = this.loginForm.value;
-            this.routerService.navigate(['/home']);
+            this.routerService.navigate(['/tracker']);
             //TODO: Implement authentication logic
         }
     }
