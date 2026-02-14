@@ -1,0 +1,104 @@
+<div class="flex flex-col min-h-screen bg-gray-50">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+
+        <!-- Brand & Navigation - Left -->
+        <div class="flex items-center gap-8">
+          <!-- Logo -->
+          <a routerLink="/tracker"
+            class="flex items-center gap-2 text-xl font-bold text-indigo-600 hover:text-indigo-700 transition-colors">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            <span class="hidden sm:inline">Daily Delta</span>
+          </a>
+
+          <!-- Navigation Links (Desktop) -->
+
+        </div>
+
+        <!-- User Menu - Right -->
+        <div class="flex items-center gap-3">
+
+          <!-- User Info (Desktop) -->
+          <div class="hidden lg:flex flex-col items-end">
+            <span class="text-sm font-medium text-gray-900">
+              {{ userStateService.getUser()()?.name }}
+            </span>
+            <span class="text-xs text-gray-500">
+              {{ userStateService.getUser()()?.email }}
+            </span>
+          </div>
+
+          <!-- User Avatar with Menu -->
+          <div class="relative">
+            <button (click)="menu.toggle($event)"
+              class="flex items-center gap-2 p-1 rounded-full hover:bg-gray-100 transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              aria-label="Menú de usuario" [attr.aria-expanded]="menu.visible">
+
+              <!-- Avatar -->
+              <div class="relative">
+                <ng-container *ngIf="!avatarError; else avatarIcon">
+                  <img [src]="userStateService.getUser()()?.picture" [alt]="userStateService.getUser()()?.name"
+                    class="w-10 h-10 rounded-full object-cover border-2 border-gray-200" (error)="avatarError = true" />
+                </ng-container>
+
+                <ng-template #avatarIcon>
+                  <div
+                    class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center border-2 border-gray-200">
+                    <i class="pi pi-user text-gray-600"></i>
+                  </div>
+                </ng-template>
+              </div>
+
+              <!-- Chevron (Desktop only) -->
+              <svg class="hidden sm:block w-4 h-4 text-gray-500 transition-transform" [class.rotate-180]="menu.visible"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            <!-- PrimeNG Menu -->
+            <p-menu #menu [model]="items" [popup]="true" [appendTo]="'body'" styleClass="mt-2 w-64">
+              <ng-template pTemplate="start">
+                <!-- User Info in Menu (Mobile) -->
+                <div class="lg:hidden px-4 py-3 border-b border-gray-200">
+                  <div class="flex items-center gap-3">
+                    <img [src]="userStateService.getUser()()?.picture" [alt]="userStateService.getUser()()?.name"
+                      class="w-12 h-12 rounded-full object-cover" />
+                    <div class="flex-1 min-w-0">
+                      <p class="text-sm font-semibold text-gray-900 truncate">
+                        {{ userStateService.getUser()()?.name }}
+                      </p>
+                      <p class="text-xs text-gray-500 truncate">
+                        {{ userStateService.getUser()()?.email }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+              </ng-template>
+            </p-menu>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main content -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <p class="text-center text-sm text-gray-500">
+        © {{ 2026 }} Daily Delta. All Rights Reserved.
+      </p>
+    </div>
+  </footer>
+</div>

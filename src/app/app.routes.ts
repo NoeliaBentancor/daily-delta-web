@@ -1,8 +1,7 @@
 import { Routes } from '@angular/router';
 import { AuthComponent } from './features/auth/components/auth.component';
-import { HOME_LAYOUT_ROUTES } from './core/home-layout/home-layout.routes';
-import { HomeLayoutComponent } from './core/home-layout/home-layout.component';
 import { TrackerComponent } from './features/tracker/tracker.component';
+import { HomeLayoutComponent } from './core/components/home-layout/home-layout.component';
 
 export const routes: Routes = [
   {

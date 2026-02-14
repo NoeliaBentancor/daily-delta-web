@@ -4,6 +4,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { MenuModule } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
 import { MenuItem } from "primeng/api";
+import { UserStateService } from "../../services/states/user-state.service";
 @Component({
     selector: "app-home-layout",
     templateUrl: "./home-layout.component.html",
@@ -12,7 +13,9 @@ import { MenuItem } from "primeng/api";
 })
 export class HomeLayoutComponent {
     private readonly routerService = inject(Router);
-      items: MenuItem[] | undefined;
+    readonly  userStateService = inject(UserStateService);
+    avatarError = false;
+    items: MenuItem[] | undefined;
 
     ngOnInit() {
         this.items = [

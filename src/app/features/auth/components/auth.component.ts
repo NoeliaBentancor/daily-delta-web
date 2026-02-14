@@ -1,11 +1,11 @@
 import { Component, inject } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule} from "@angular/forms";
 import { Router } from "@angular/router";
-import { InputTextModule } from 'primeng/inputtext';
+import { GoogleSignInComponent } from "../../google-auth/components/google-auth.component";
 @Component({
     selector: "app-auth",
     templateUrl: "./auth.component.html",
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, GoogleSignInComponent],
 })
 export class AuthComponent {
     private readonly formBuilder = inject(FormBuilder);

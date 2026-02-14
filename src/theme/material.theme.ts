@@ -8,7 +8,7 @@ export const materialTheme = definePreset(Aura, {
           0: '#FFFFFF',
           50: '#F8FAFC',
           100: '#F1F5F9',
-          900: '#0F172A' // solo para texto fuerte, NO background
+          900: '#0F172A' 
         },
         primary: {
           color: '#6366F1',
